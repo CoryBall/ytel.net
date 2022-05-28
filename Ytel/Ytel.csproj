@@ -2,13 +2,22 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latestmajor</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Authentication\" />
-    <Folder Include="Configuration\" />
-    <Folder Include="PhoneNumbers\" />
-    <Folder Include="Voice\" />
+    <Folder Include="Numbers\GetNumbers" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Flurl" Version="3.0.6" />
+    <PackageReference Include="Macross.Json.Extensions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
+    <PackageReference Include="System.Text.Json" Version="6.0.4" />
   </ItemGroup>
 
 </Project>

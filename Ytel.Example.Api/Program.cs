@@ -1,8 +1,23 @@
+using System.Text.Json.Serialization;
+using FluentValidation.AspNetCore;
+using Ytel.Configuration;
+
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+})
+    .AddFluentValidation();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+var ytelConfig = builder.Configuration.GetSection("Ytel").Get<YtelConfiguration>();
+builder.Services.AddYtel(options =>
+{
+    options.ApiToken = ytelConfig.ApiToken;
+});
 
 var app = builder.Build();
 

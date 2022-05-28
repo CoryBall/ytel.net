@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ytel", "Ytel\Ytel.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ytel.Example.Api", "Ytel.Example.Api\Ytel.Example.Api.csproj", "{4F7F27CF-D5B3-4524-A8BD-C9E7899F9342}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ytel.Tests", "Ytel.Tests\Ytel.Tests.csproj", "{89799171-9F4E-4779-855E-C57ADA32238D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{4F7F27CF-D5B3-4524-A8BD-C9E7899F9342}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F7F27CF-D5B3-4524-A8BD-C9E7899F9342}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F7F27CF-D5B3-4524-A8BD-C9E7899F9342}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89799171-9F4E-4779-855E-C57ADA32238D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89799171-9F4E-4779-855E-C57ADA32238D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89799171-9F4E-4779-855E-C57ADA32238D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89799171-9F4E-4779-855E-C57ADA32238D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
