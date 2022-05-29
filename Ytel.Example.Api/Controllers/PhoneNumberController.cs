@@ -17,7 +17,8 @@ public class PhoneNumberController : ControllerBase
     }
     
     [HttpGet("/available")]
-    public async Task<ActionResult<YtelApiResponse<GetAvailableNumbersOutput>>> GetAvailablePhoneNumbers([FromQuery] GetAvailableNumbersInputDto input)
+    public async Task<ActionResult<YtelApiResponse<GetAvailableNumbersOutput>>> GetAvailablePhoneNumbers(
+        [FromQuery] GetAvailableNumbersInputDto input)
     {
         var phoneNumbers = await _ytelService.Numbers.GetAvailableNumbersAsync(input.ToInput());
         return Ok(phoneNumbers);
