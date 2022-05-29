@@ -12,8 +12,10 @@ namespace Ytel
         [JsonPropertyName("page")]
         public int Page { get; set; }
         [JsonPropertyName("payload")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public List<T>? Payload { get; set; }
         [JsonPropertyName("error")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public List<YtelApiError>? Error { get; set; }
 
         public YtelApiResponse()

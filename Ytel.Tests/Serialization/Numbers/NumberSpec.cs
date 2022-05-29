@@ -2,7 +2,7 @@ using System;
 using Xunit;
 using Ytel.Numbers;
 
-namespace Ytel.Tests.Numbers;
+namespace Ytel.Tests.Serialization.Numbers;
 
 public class NumberSpec
 {

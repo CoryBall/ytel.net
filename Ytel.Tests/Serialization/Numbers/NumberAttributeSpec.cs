@@ -2,7 +2,7 @@ using System.Text.Json;
 using Xunit;
 using Ytel.Numbers;
 
-namespace Ytel.Tests.Numbers;
+namespace Ytel.Tests.Serialization.Numbers;
 
 public class NumberAttributeSpec
 {
@@ -20,5 +20,5 @@ public class NumberAttributeSpec
     }
 
     private readonly NumberAttribute _object = NumberAttribute.Voice;
-    private readonly string _json = "\"voice-enabled\"";
+    private readonly string _json = @"""voice-enabled""";
 }
