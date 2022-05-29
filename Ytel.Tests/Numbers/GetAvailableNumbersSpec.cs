@@ -8,35 +8,30 @@ namespace Ytel.Tests.Numbers;
 public class GetAvailableNumbersSpec
 {
     [Fact]
+    public void TestSerialization()
+    {
+        var json = JsonSerializer.Serialize(_object);
+        Assert.Equal(json, _json);
+    }
+    
+    [Fact]
     public void TestDeserialization()
     {
-        var testObject = new YtelApiResponse<GetAvailableNumbersOutput>()
-        {
-            Status = true,
-            Count = 1,
-            Page = 1,
-            Payload = new List<GetAvailableNumbersOutput>
-            {
-                new()
-                {
-                    PhoneNumber = "+12223334444",
-                    Region = "US-MI",
-                    TimeZone = -20,
-                    Attributes = new List<NumberAttribute>()
-                    {
-                        NumberAttribute.Voice
-                    },
-                    NumberType = 1
-                }
-            }
-        };
-        const string testJsonString = @"{""status"":true,""count"":1,""page"":1,""payload"":[{""phoneNumber"":""\u002B12223334444"",""region"":""US-MI"",""timezone"":-20,""attributes"":[""voice-enabled""],""numberType"":1}],""error"":null}";
-        var json = JsonSerializer.Serialize(testObject);
-        
-        Assert.Equal(json, testJsonString);
-        
-        var deserialized = JsonSerializer.Deserialize<YtelApiResponse<GetAvailableNumbersOutput>>(json);
-        
-        Assert.NotStrictEqual(deserialized, testObject);
+        var deserialized = JsonSerializer.Deserialize<GetAvailableNumbersOutput>(_json);
+        Assert.NotStrictEqual(deserialized, _object);
     }
+    
+    private readonly GetAvailableNumbersOutput _object = new()
+    {
+        PhoneNumber = "+12223334444",
+        Region = "US-MI",
+        TimeZone = -20,
+        Attributes = new List<NumberAttribute>()
+        {
+            NumberAttribute.Voice
+        },
+        NumberType = 1
+    };
+
+    private readonly string _json = @"{""phoneNumber"":""\u002B12223334444"",""region"":""US-MI"",""timezone"":-20,""attributes"":[""voice-enabled""],""numberType"":1}";
 }

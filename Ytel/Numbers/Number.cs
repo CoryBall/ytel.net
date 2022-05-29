@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace Ytel.Numbers;
 
-public class PurchaseNumberOutput
+public class Number
 {
     [JsonPropertyName("accountSid")]
     public Guid AccountSid { get; set; }
@@ -50,7 +50,7 @@ public class PurchaseNumberOutput
     [JsonPropertyName("numberType")]
     public int NumberType { get; set; }
 
-    public PurchaseNumberOutput()
+    public Number()
     {
     }
 }

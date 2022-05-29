@@ -1,5 +1,4 @@
 using System.Text.Json;
-using System.Threading.Tasks;
 using Xunit;
 using Ytel.Numbers;
 
@@ -8,14 +7,18 @@ namespace Ytel.Tests.Numbers;
 public class NumberAttributeSpec
 {
     [Fact]
+    public void TestSerialization()
+    {
+        var json = JsonSerializer.Serialize(_object);
+        Assert.Equal( _json, json);
+    }
+    [Fact]
     public void TestDeserialization()
     {
-        var json = JsonSerializer.Serialize(NumberAttribute.Voice);
-        
-        Assert.Equal( "\"voice-enabled\"", json);
-
-        var deserialized = JsonSerializer.Deserialize<NumberAttribute>(json);
-        
-        Assert.Equal(NumberAttribute.Voice, deserialized);
+        var deserialized = JsonSerializer.Deserialize<NumberAttribute>(_json);
+        Assert.Equal(_object, deserialized);
     }
+
+    private readonly NumberAttribute _object = NumberAttribute.Voice;
+    private readonly string _json = "\"voice-enabled\"";
 }

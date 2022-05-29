@@ -29,7 +29,7 @@ public class NumbersService : YtelBaseService, INumbersService
         return await JsonSerializer.DeserializeAsync<YtelApiResponse<GetAvailableNumbersOutput>>(contentStream, options: default, ct);
     }
 
-    public async Task<YtelApiResponse<PurchaseNumberOutput>?> PurchaseNumberAsync(PurchaseNumberInput input,
+    public async Task<YtelApiResponse<Number>?> PurchaseNumberAsync(PurchaseNumberInput input,
         CancellationToken ct = default)
     {
         const string uri = NumbersEndpoints.PurchaseNumber;
@@ -37,7 +37,7 @@ public class NumbersService : YtelBaseService, INumbersService
         using var result = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, ct)
             .ConfigureAwait(false);
         using var contentStream = await result.Content.ReadAsStreamAsync();
-        return await JsonSerializer.DeserializeAsync<YtelApiResponse<PurchaseNumberOutput>>(contentStream,
+        return await JsonSerializer.DeserializeAsync<YtelApiResponse<Number>>(contentStream,
             options: default, ct);
     }
 }
