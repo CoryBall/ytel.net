@@ -49,4 +49,8 @@ public class PurchaseNumberOutput
     public List<NumberAttribute>? Attributes { get; set; }
     [JsonPropertyName("numberType")]
     public int NumberType { get; set; }
+
+    public PurchaseNumberOutput()
+    {
+    }
 }

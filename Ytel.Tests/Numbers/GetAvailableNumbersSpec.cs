@@ -30,8 +30,7 @@ public class GetAvailableNumbersSpec
                 }
             }
         };
-        var testJsonString =
-            @"{""status"":true,""count"":1,""page"":1,""payload"":[{""phoneNumber"":""\u002B12223334444"",""region"":""US-MI"",""timezone"":-20,""attributes"":[""voice-enabled""],""numberType"":1}],""error"":null}";
+        const string testJsonString = @"{""status"":true,""count"":1,""page"":1,""payload"":[{""phoneNumber"":""\u002B12223334444"",""region"":""US-MI"",""timezone"":-20,""attributes"":[""voice-enabled""],""numberType"":1}],""error"":null}";
         var json = JsonSerializer.Serialize(testObject);
         
         Assert.Equal(json, testJsonString);

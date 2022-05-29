@@ -1,5 +1,6 @@
 namespace Ytel
 {
+    // ReSharper disable once ClassNeverInstantiated.Global
     public class YtelApiError
     {
         public string Code { get; set; } = "";
