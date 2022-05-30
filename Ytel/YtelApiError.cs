@@ -6,10 +6,10 @@ namespace Ytel
     public class YtelApiError
     {
         [JsonPropertyName("code")]
-        public string Code { get; set; } = "";
+        public string? Code { get; set; }
         [JsonPropertyName("message")]
-        public string Message { get; set; } = "";
+        public string? Message { get; set; }
         [JsonPropertyName("moreInfo")]
-        public string MoreInfo { get; set; } = "";
+        public string? MoreInfo { get; set; }
     }
 }
