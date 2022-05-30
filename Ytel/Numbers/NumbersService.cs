@@ -13,6 +13,24 @@ public class NumbersService : YtelBaseService, INumbersService
     {
     }
 
+    public async Task<YtelApiResponse<Number>?> GetNumbersAsync(CancellationToken ct = default)
+    {
+        const string uri = NumbersEndpoints.GetNumbers;
+        using var result = await _httpClient.GetAsync(uri, ct).ConfigureAwait(false);
+        using var contentStream = await result.Content.ReadAsStreamAsync();
+        return await JsonSerializer.DeserializeAsync<YtelApiResponse<Number>>(contentStream, options: default, ct);
+    }
+
+    public async Task<YtelApiResponse<Number>?> GetNumberAsync(string phoneNumber, CancellationToken ct = default)
+    {
+        var uri = $"{NumbersEndpoints.GetNumbers}{phoneNumber}/";
+        
+        using var result = await _httpClient.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead, ct)
+            .ConfigureAwait(false);
+        using var contentStream = await result.Content.ReadAsStreamAsync();
+        return await JsonSerializer.DeserializeAsync<YtelApiResponse<Number>>(contentStream, options: default, ct);
+    }
+
     public async Task<YtelApiResponse<GetAvailableNumbersOutput>?> GetAvailableNumbersAsync(GetAvailableNumbersInput input, CancellationToken ct = default)
     {
         var uri = NumbersEndpoints.GetAvailableNumbers.SetQueryParams(new
@@ -40,25 +58,7 @@ public class NumbersService : YtelBaseService, INumbersService
         return await JsonSerializer.DeserializeAsync<YtelApiResponse<Number>>(contentStream,
             options: default, ct);
     }
-
-    public async Task<YtelApiResponse<Number>?> GetNumbersAsync(CancellationToken ct = default)
-    {
-        const string uri = NumbersEndpoints.GetNumbers;
-        using var result = await _httpClient.GetAsync(uri, ct).ConfigureAwait(false);
-        using var contentStream = await result.Content.ReadAsStreamAsync();
-        return await JsonSerializer.DeserializeAsync<YtelApiResponse<Number>>(contentStream, options: default, ct);
-    }
-
-    public async Task<YtelApiResponse<Number>?> GetNumberAsync(string phoneNumber, CancellationToken ct = default)
-    {
-        var uri = $"{NumbersEndpoints.GetNumbers}{phoneNumber}/";
-        
-        using var result = await _httpClient.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead, ct)
-            .ConfigureAwait(false);
-        using var contentStream = await result.Content.ReadAsStreamAsync();
-        return await JsonSerializer.DeserializeAsync<YtelApiResponse<Number>>(contentStream, options: default, ct);
-    }
-
+    
     public async Task<YtelApiResponse<Number>?> ReleaseNumberAsync(ReleaseNumberInput input,
         CancellationToken ct = default)
     {
