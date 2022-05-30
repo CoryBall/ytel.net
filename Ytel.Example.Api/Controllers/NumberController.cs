@@ -16,7 +16,7 @@ public class NumberController : ControllerBase
         _ytelService = ytelService;
     }
     
-    [HttpGet("/available")]
+    [HttpGet("available")]
     public async Task<ActionResult<YtelApiResponse<GetAvailableNumbersOutput>>> GetAvailableNumbers(
         [FromQuery] GetAvailableNumbersInputDto input)
     {
@@ -30,5 +30,19 @@ public class NumberController : ControllerBase
     {
         var numbers = await _ytelService.Numbers.PurchaseNumberAsync(input);
         return Ok(numbers);
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<YtelApiResponse<Number>>> GetNumbers()
+    {
+        var numbers = await _ytelService.Numbers.GetAccountNumbersAsync();
+        return Ok(numbers);
+    }
+
+    [HttpGet("{phoneNumber}")]
+    public async Task<ActionResult<YtelApiResponse<Number>>> GetNumber(string phoneNumber)
+    {
+        var number = await _ytelService.Numbers.GetNumberAsync(phoneNumber);
+        return Ok(number);
     }
 }
