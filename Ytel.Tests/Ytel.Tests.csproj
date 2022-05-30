@@ -24,4 +24,8 @@
       <ProjectReference Include="..\Ytel\Ytel.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Serialization" />
+    </ItemGroup>
+
 </Project>

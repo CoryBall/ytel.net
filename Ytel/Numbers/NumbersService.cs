@@ -1,4 +1,5 @@
 using System.Net.Http;
+using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
@@ -22,22 +23,21 @@ public class NumbersService : YtelBaseService, INumbersService
             excludedFeatures = string.Join(",", input.ExcludedFeatures).ToLower()
         });
         
-        var request = new HttpRequestMessage(HttpMethod.Get, uri);
-        using var result = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, ct)
+        using var result = await _httpClient.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead, ct)
             .ConfigureAwait(false);
         using var contentStream = await result.Content.ReadAsStreamAsync();
         return await JsonSerializer.DeserializeAsync<YtelApiResponse<GetAvailableNumbersOutput>>(contentStream, options: default, ct);
     }
 
-    public async Task<YtelApiResponse<PurchaseNumberOutput>?> PurchaseNumberAsync(PurchaseNumberInput input,
+    public async Task<YtelApiResponse<Number>?> PurchaseNumberAsync(PurchaseNumberInput input,
         CancellationToken ct = default)
     {
         const string uri = NumbersEndpoints.PurchaseNumber;
-        var request = new HttpRequestMessage(HttpMethod.Post, uri);
-        using var result = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, ct)
+        var content = new StringContent(JsonSerializer.Serialize(input), Encoding.UTF8, "application/json");
+        using var result = await _httpClient.PostAsync(uri, content, ct)
             .ConfigureAwait(false);
         using var contentStream = await result.Content.ReadAsStreamAsync();
-        return await JsonSerializer.DeserializeAsync<YtelApiResponse<PurchaseNumberOutput>>(contentStream,
+        return await JsonSerializer.DeserializeAsync<YtelApiResponse<Number>>(contentStream,
             options: default, ct);
     }
 }
