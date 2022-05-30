@@ -35,7 +35,7 @@ public class NumberController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<YtelApiResponse<Number>>> GetNumbers()
     {
-        var numbers = await _ytelService.Numbers.GetAccountNumbersAsync();
+        var numbers = await _ytelService.Numbers.GetNumbersAsync();
         return Ok(numbers);
     }
 
@@ -44,5 +44,12 @@ public class NumberController : ControllerBase
     {
         var number = await _ytelService.Numbers.GetNumberAsync(phoneNumber);
         return Ok(number);
+    }
+
+    [HttpPost("release")]
+    public async Task<ActionResult<YtelApiResponse<Number>>> ReleaseNumbers([FromBody] ReleaseNumberInput input)
+    {
+        var numbers = await _ytelService.Numbers.ReleaseNumberAsync(input);
+        return Ok(numbers);
     }
 }
