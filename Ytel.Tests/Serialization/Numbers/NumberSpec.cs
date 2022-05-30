@@ -21,8 +21,7 @@ public class NumberSpec
     private readonly Number _object = new()
     {
         AccountSid = _guid,
-        PhoneSide = _guid,
-        
+        PhoneSid = _guid,
     };
 
     private readonly string _json = "";
