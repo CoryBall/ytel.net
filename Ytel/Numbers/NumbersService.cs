@@ -41,7 +41,7 @@ public class NumbersService : YtelBaseService, INumbersService
             options: default, ct);
     }
 
-    public async Task<YtelApiResponse<Number>?> GetAccountNumbersAsync(CancellationToken ct = default)
+    public async Task<YtelApiResponse<Number>?> GetNumbersAsync(CancellationToken ct = default)
     {
         const string uri = NumbersEndpoints.GetNumbers;
         using var result = await _httpClient.GetAsync(uri, ct).ConfigureAwait(false);
@@ -57,5 +57,17 @@ public class NumbersService : YtelBaseService, INumbersService
             .ConfigureAwait(false);
         using var contentStream = await result.Content.ReadAsStreamAsync();
         return await JsonSerializer.DeserializeAsync<YtelApiResponse<Number>>(contentStream, options: default, ct);
+    }
+
+    public async Task<YtelApiResponse<Number>?> ReleaseNumberAsync(ReleaseNumberInput input,
+        CancellationToken ct = default)
+    {
+        const string uri = NumbersEndpoints.ReleaseNumber;
+        var content = new StringContent(JsonSerializer.Serialize(input), Encoding.UTF8, "application/json");
+        using var result = await _httpClient.PostAsync(uri, content, ct)
+            .ConfigureAwait(false);
+        using var contentStream = await result.Content.ReadAsStreamAsync();
+        return await JsonSerializer.DeserializeAsync<YtelApiResponse<Number>>(contentStream,
+            options: default, ct);
     }
 }
