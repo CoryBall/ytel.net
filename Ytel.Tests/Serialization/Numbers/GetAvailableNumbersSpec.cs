@@ -33,10 +33,10 @@ public class GetAvailableNumbersSpec
                 PhoneNumber = "+17142421234",
                 Region = "US-CA",
                 TimeZone = -32,
-                Attributes = new List<NumberAttribute>()
+                Attributes = new List<YtelNumberAttribute>()
                 {
-                    NumberAttribute.Voice,
-                    NumberAttribute.Sms
+                    YtelNumberAttribute.Voice,
+                    YtelNumberAttribute.Sms
                 },
                 NumberType = 1
             },
@@ -45,11 +45,11 @@ public class GetAvailableNumbersSpec
                 PhoneNumber = "+17144061234",
                 Region = "US-CA",
                 TimeZone = -32,
-                Attributes = new List<NumberAttribute>()
+                Attributes = new List<YtelNumberAttribute>()
                 {
-                    NumberAttribute.Mms,
-                    NumberAttribute.Voice,
-                    NumberAttribute.Sms
+                    YtelNumberAttribute.Mms,
+                    YtelNumberAttribute.Voice,
+                    YtelNumberAttribute.Sms
                 },
                 NumberType = 1
             },
@@ -58,10 +58,10 @@ public class GetAvailableNumbersSpec
                 PhoneNumber = "+17142421234",
                 Region = "US-CA",
                 TimeZone = -32,
-                Attributes = new List<NumberAttribute>()
+                Attributes = new List<YtelNumberAttribute>()
                 {
-                    NumberAttribute.Voice,
-                    NumberAttribute.Sms
+                    YtelNumberAttribute.Voice,
+                    YtelNumberAttribute.Sms
                 },
                 NumberType = 1
             }

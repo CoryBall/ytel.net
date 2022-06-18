@@ -1,6 +1,6 @@
 namespace Ytel.Call;
 
-public static class CallEndpoints
+public static class YtelCallEndpoints
 {
     public const string MakeCall = "v4/call/";
 }

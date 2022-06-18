@@ -69,7 +69,7 @@ public class MakeCallInput
     
     [JsonPropertyName("playDtmf")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public List<Dialtone>? PlayDtmf { get; set; }
+    public List<YtelDialtone>? PlayDtmf { get; set; }
 
     [JsonPropertyName("hideCallerId")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]

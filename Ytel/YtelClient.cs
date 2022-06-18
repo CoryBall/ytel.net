@@ -7,15 +7,15 @@ using Ytel.Numbers;
 
 namespace Ytel;
 
-public class YtelService
+public class YtelClient
 {
-    public YtelService(HttpClient httpClient, IOptions<YtelConfiguration> configuration)
+    public YtelClient(HttpClient httpClient, IOptions<YtelClientConfiguration> configuration)
     {
         httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", configuration.Value.ApiToken);
-        Numbers = new NumbersService(httpClient);
-        Call = new CallService(httpClient);
+        Numbers = new YtelNumberClient(httpClient);
+        Call = new YtelCallClient(httpClient);
     }
     
-    public NumbersService Numbers { get; }
-    public CallService Call { get; }
+    public YtelNumberClient Numbers { get; }
+    public YtelCallClient Call { get; }
 }

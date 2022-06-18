@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 namespace Ytel.Call;
 
 [JsonConverter(typeof(JsonStringEnumMemberConverter))]
-public enum Dialtone
+public enum YtelDialtone
 {
     [JsonPropertyName("0")]
     Zero = 0,

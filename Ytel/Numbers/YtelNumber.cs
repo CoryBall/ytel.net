@@ -6,7 +6,7 @@ using Ytel.Serialization;
 
 namespace Ytel.Numbers;
 
-public class Number
+public class YtelNumber
 {
     [JsonPropertyName("accountSid")]
     public Guid AccountSid { get; set; }
@@ -63,11 +63,11 @@ public class Number
     [JsonPropertyName("hangupCallbackMethod")]
     public string? HangupCallbackMethod { get; set; }
     [JsonPropertyName("attributes")]
-    public List<NumberAttribute>? Attributes { get; set; }
+    public List<YtelNumberAttribute>? Attributes { get; set; }
     [JsonPropertyName("numberType")]
     public int NumberType { get; set; }
 
-    public Number()
+    public YtelNumber()
     {
     }
 }

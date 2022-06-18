@@ -12,7 +12,7 @@ public class GetAvailableNumbersOutput
     [JsonPropertyName("timezone")]
     public int TimeZone { get; set; }
     [JsonPropertyName("attributes")]
-    public List<NumberAttribute>? Attributes { get; set; }
+    public List<YtelNumberAttribute>? Attributes { get; set; }
     [JsonPropertyName("numberType")]
     public int NumberType { get; set; }
 

@@ -8,18 +8,18 @@ namespace Ytel.Example.Api.Controllers;
 [Produces("application/json")]
 public class CallController : ControllerBase
 {
-    private readonly YtelService _ytelService;
+    private readonly YtelClient _ytelClient;
 
-    public CallController(YtelService ytelService)
+    public CallController(YtelClient ytelClient)
     {
-        _ytelService = ytelService;
+        _ytelClient = ytelClient;
     }
     
     [HttpPost]
     public async Task<ActionResult<YtelApiResponse<MakeCallOutput>>> MakeCall(
         [FromBody] MakeCallInput input)
     {
-        var callInfo = await _ytelService.Call.MakeCall(input);
+        var callInfo = await _ytelClient.Call.MakeCall(input);
         return Ok(callInfo);
     }
 }

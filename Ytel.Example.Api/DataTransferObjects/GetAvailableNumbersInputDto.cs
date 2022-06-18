@@ -11,8 +11,8 @@ public class GetAvailableNumbersInputDto
     [Required]
     public int Size { get; set; }
 
-    public List<NumberFeature> IncludedFeatures { get; set; } = new();
-    public List<NumberFeature> ExcludedFeatures { get; set; } = new();
+    public List<YtelNumberFeature> IncludedFeatures { get; set; } = new();
+    public List<YtelNumberFeature> ExcludedFeatures { get; set; } = new();
 
     public GetAvailableNumbersInput ToInput()
     {

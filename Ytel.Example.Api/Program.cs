@@ -13,7 +13,7 @@ builder.Services.AddControllers()
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var ytelConfig = builder.Configuration.GetSection("Ytel").Get<YtelConfiguration>();
+var ytelConfig = builder.Configuration.GetSection("Ytel").Get<YtelClientConfiguration>();
 builder.Services.AddYtel(options =>
 {
     options.ApiToken = ytelConfig.ApiToken;

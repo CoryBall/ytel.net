@@ -1,6 +1,6 @@
 namespace Ytel.Configuration
 {
-    public class YtelConfiguration
+    public class YtelClientConfiguration
     {
         public string ApiToken { get; set; } = "";
     }

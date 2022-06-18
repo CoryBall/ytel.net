@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace Ytel.Call;
 
-public class CallService : YtelBaseService, ICallService
+public class YtelCallClient : YtelBaseService, IYtelCallClient
 {
-    public CallService(HttpClient httpClient) : base(httpClient)
+    public YtelCallClient(HttpClient httpClient) : base(httpClient)
     {
     }
 
     public async Task<YtelApiResponse<MakeCallOutput>?> MakeCall(MakeCallInput input, CancellationToken ct = default)
     {
-        const string uri = CallEndpoints.MakeCall;
+        const string uri = YtelCallEndpoints.MakeCall;
         var content = new StringContent(JsonSerializer.Serialize(input), Encoding.UTF8, "application/json");
         using var result = await _httpClient.PostAsync(uri, content, ct)
             .ConfigureAwait(false);
