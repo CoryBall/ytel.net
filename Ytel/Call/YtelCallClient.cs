@@ -22,4 +22,15 @@ public class YtelCallClient : YtelBaseService, IYtelCallClient
         return await JsonSerializer.DeserializeAsync<YtelApiResponse<MakeCallOutput>>(contentStream,
             options: default, ct);
     }
+
+    public async Task<YtelApiResponse<MakeCallOutput>?> MakeGroupCall(MakeGroupCallInput input, CancellationToken ct = default)
+    {
+        const string uri = YtelCallEndpoints.MakeGroupCall;
+        var content = new StringContent(JsonSerializer.Serialize(input), Encoding.UTF8, "application/json");
+        using var result = await _httpClient.PostAsync(uri, content, ct)
+            .ConfigureAwait(false);
+        using var contentStream = await result.Content.ReadAsStreamAsync();
+        return await JsonSerializer.DeserializeAsync<YtelApiResponse<MakeCallOutput>>(contentStream,
+            options: default, ct);
+    }
 }
