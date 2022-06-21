@@ -1,6 +1,8 @@
 # Ytel.NET
 
-> A C# SDK for [Ytel](https://www.ytel.com/) phone services
+### A C# SDK for [Ytel](https://www.ytel.com/) phone services
+
+> NOTE: This is package is currently in development. Until a stable release, it is possible that any updates might include breaking changes.
 
 ## Current features:
 
@@ -35,18 +37,18 @@
    ```csharp
    public class PhoneNumberController : ControllerBase
    {
-       private readonly YtelService _ytelService;
+       private readonly YtelClient _ytelClient;
 
-       public PhoneNumberController(YtelService ytelService)
+       public PhoneNumberController(YtelClient ytelClient)
        {
-           _ytelService = ytelService;
+           _ytelClient = ytelClient;
        }
 
        [HttpGet("/available")]
        public async Task<ActionResult<YtelApiResponse<GetAvailableNumbersOutput>>> GetAvailablePhoneNumbers(
            [FromQuery] GetAvailableNumbersInput input)
        {
-           var phoneNumbers = await _ytelService.Numbers.GetAvailableNumbersAsync(input);
+           var phoneNumbers = await _ytelClient.Numbers.GetAvailableNumbersAsync(input);
            return Ok(phoneNumbers);
        }
    }
