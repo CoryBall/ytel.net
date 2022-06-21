@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 namespace Ytel.Numbers;
 
 [JsonConverter(typeof(JsonStringEnumMemberConverter))]
-public enum NumberAttribute
+public enum YtelNumberAttribute
 {
     [JsonPropertyName("voice-enabled")]
     Voice = 0,

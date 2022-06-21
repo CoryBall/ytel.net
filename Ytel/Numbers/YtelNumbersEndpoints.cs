@@ -1,6 +1,6 @@
 namespace Ytel.Numbers;
 
-public static class NumbersEndpoints
+public static class YtelNumbersEndpoints
 {
     public const string GetAvailableNumbers = "v4/number/available/";
     public const string PurchaseNumber = "v4/number/purchase/";

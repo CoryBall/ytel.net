@@ -9,47 +9,47 @@ namespace Ytel.Example.Api.Controllers;
 [Produces("application/json")]
 public class NumberController : ControllerBase
 {
-    private readonly YtelService _ytelService;
+    private readonly YtelClient _ytelClient;
 
-    public NumberController(YtelService ytelService)
+    public NumberController(YtelClient ytelClient)
     {
-        _ytelService = ytelService;
+        _ytelClient = ytelClient;
     }
     
     [HttpGet("available")]
     public async Task<ActionResult<YtelApiResponse<GetAvailableNumbersOutput>>> GetAvailableNumbers(
         [FromQuery] GetAvailableNumbersInputDto input)
     {
-        var phoneNumbers = await _ytelService.Numbers.GetAvailableNumbersAsync(input.ToInput());
+        var phoneNumbers = await _ytelClient.Numbers.GetAvailableNumbersAsync(input.ToInput());
         return Ok(phoneNumbers);
     }
 
     [HttpPost("purchase")]
-    public async Task<ActionResult<YtelApiResponse<Number>>> PurchaseNumbers(
+    public async Task<ActionResult<YtelApiResponse<YtelNumber>>> PurchaseNumbers(
         [FromBody] PurchaseNumberInput input)
     {
-        var numbers = await _ytelService.Numbers.PurchaseNumberAsync(input);
+        var numbers = await _ytelClient.Numbers.PurchaseNumberAsync(input);
         return Ok(numbers);
     }
 
     [HttpGet]
-    public async Task<ActionResult<YtelApiResponse<Number>>> GetNumbers()
+    public async Task<ActionResult<YtelApiResponse<YtelNumber>>> GetNumbers()
     {
-        var numbers = await _ytelService.Numbers.GetNumbersAsync();
+        var numbers = await _ytelClient.Numbers.GetNumbersAsync();
         return Ok(numbers);
     }
 
     [HttpGet("{phoneNumber}")]
-    public async Task<ActionResult<YtelApiResponse<Number>>> GetNumber(string phoneNumber)
+    public async Task<ActionResult<YtelApiResponse<YtelNumber>>> GetNumber(string phoneNumber)
     {
-        var number = await _ytelService.Numbers.GetNumberAsync(phoneNumber);
+        var number = await _ytelClient.Numbers.GetNumberAsync(phoneNumber);
         return Ok(number);
     }
 
     [HttpPost("release")]
-    public async Task<ActionResult<YtelApiResponse<Number>>> ReleaseNumbers([FromBody] ReleaseNumberInput input)
+    public async Task<ActionResult<YtelApiResponse<YtelNumber>>> ReleaseNumbers([FromBody] ReleaseNumberInput input)
     {
-        var numbers = await _ytelService.Numbers.ReleaseNumberAsync(input);
+        var numbers = await _ytelClient.Numbers.ReleaseNumberAsync(input);
         return Ok(numbers);
     }
 }

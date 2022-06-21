@@ -11,14 +11,14 @@ public class PurchaseNumberSerializationSpec
     [Fact]
     public void TestDeserialization()
     {
-        var deserialized = JsonSerializer.Deserialize<YtelApiResponse<Number>>(_json);
+        var deserialized = JsonSerializer.Deserialize<YtelApiResponse<YtelNumber>>(_json);
         Assert.NotStrictEqual(deserialized, _object);
     }
 
     [Fact]
     public void TestDeserializationWithError()
     {
-        var deserialized = JsonSerializer.Deserialize<YtelApiResponse<Number>>(_jsonWithError);
+        var deserialized = JsonSerializer.Deserialize<YtelApiResponse<YtelNumber>>(_jsonWithError);
         Assert.NotStrictEqual(deserialized, _objectWithError);
     }
     
@@ -36,12 +36,12 @@ public class PurchaseNumberSerializationSpec
         Assert.Equal(json, _jsonWithError);
     }
 
-    private readonly YtelApiResponse<Number> _object = new()
+    private readonly YtelApiResponse<YtelNumber> _object = new()
     {
         Status = true,
         Count = 1,
         Page = 1,
-        Payload = new List<Number>()
+        Payload = new List<YtelNumber>()
         {
             new()
             {
@@ -53,9 +53,9 @@ public class PurchaseNumberSerializationSpec
                 PurchaseDate = new DateTime(1653857047139),
                 Region = "US-AR",
                 TimeZone = -24,
-                Attributes = new List<NumberAttribute>()
+                Attributes = new List<YtelNumberAttribute>()
                 {
-                    NumberAttribute.Voice
+                    YtelNumberAttribute.Voice
                 },
                 NumberType = 1
             }
@@ -69,7 +69,7 @@ public class PurchaseNumberSerializationSpec
                                     @"""renewalDate"":1656708247139,""purchaseDate"":1653857047139,""region"":""US-AR"",""timezone"":-24,""attributes"":[" + 
                                     @"""voice-enabled""],""numberType"":1}]}";
 
-    private readonly YtelApiResponse<Number> _objectWithError = new()
+    private readonly YtelApiResponse<YtelNumber> _objectWithError = new()
     {
         Status = false,
         Count = 0,

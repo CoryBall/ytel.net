@@ -18,17 +18,17 @@ public class GetNumbersSpec
     [Fact]
     public void TestDeserialization()
     {
-        var deserialized = JsonSerializer.Deserialize<YtelApiResponse<Number>>(_json);
+        var deserialized = JsonSerializer.Deserialize<YtelApiResponse<YtelNumber>>(_json);
         Assert.NotStrictEqual(_object, deserialized);
     }
 
-    private readonly YtelApiResponse<Number> _object = new()
+    private readonly YtelApiResponse<YtelNumber> _object = new()
     {
         Status = true,
         Count = 2,
         Page = 1,
         NextKey = "KzE0NzkyMjcyODU2",
-        Payload = new List<Number>()
+        Payload = new List<YtelNumber>()
         {
             new()
             {
@@ -40,9 +40,9 @@ public class GetNumbersSpec
                 PurchaseDate = new DateTime(1653857047139),
                 Region = "US-AR",
                 TimeZone = -24,
-                Attributes = new List<NumberAttribute>()
+                Attributes = new List<YtelNumberAttribute>()
                 {
-                    NumberAttribute.Voice
+                    YtelNumberAttribute.Voice
                 },
                 NumberType = 1
             },
@@ -56,9 +56,9 @@ public class GetNumbersSpec
                 PurchaseDate = new DateTime(1653883161448),
                 Region = "US-AR",
                 TimeZone = -24,
-                Attributes = new List<NumberAttribute>()
+                Attributes = new List<YtelNumberAttribute>()
                 {
-                    NumberAttribute.Voice
+                    YtelNumberAttribute.Voice
                 },
                 NumberType = 1
             }

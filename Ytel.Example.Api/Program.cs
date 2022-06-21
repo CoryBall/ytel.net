@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Ytel.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +14,7 @@ builder.Services.AddControllers()
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var ytelConfig = builder.Configuration.GetSection("Ytel").Get<YtelConfiguration>();
+var ytelConfig = builder.Configuration.GetSection("Ytel").Get<YtelClientConfiguration>();
 builder.Services.AddYtel(options =>
 {
     options.ApiToken = ytelConfig.ApiToken;

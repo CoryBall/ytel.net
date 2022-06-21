@@ -1,0 +1,67 @@
+using System.Xml.Serialization;
+
+namespace Ytel.Inbound;
+
+public enum SayVoice
+{
+    [XmlEnum("nl-nl-standard-female-1")]
+    Female,
+    [XmlEnum("en-us-standard-female-1")]
+    AmericanFemale1,
+    [XmlEnum("en-us-standard-female-2")]
+    AmericanFemale2,
+    [XmlEnum("en-us-standard-male-1")]
+    AmericanMale1,
+    [XmlEnum("en-us-standard-male-2")]
+    AmericanMale2,
+    [XmlEnum("en-au-standard-female-1")]
+    AustralianFemale1,
+    [XmlEnum("en-au-standard-female-2")]
+    AustralianFemale2,
+    [XmlEnum("en-au-standard-male-1")]
+    AustralianMale1,
+    [XmlEnum("en-au-standard-male-2")]
+    AustralianMale2,
+    [XmlEnum("en-gb-standard-female-1")]
+    BritishFemale1,
+    [XmlEnum("en-gb-standard-female-2")]
+    BritishFemale2,
+    [XmlEnum("en-gb-standard-male-1")]
+    BritishMale1,
+    [XmlEnum("en-gb-standard-male-2")]
+    BritishMale2,
+    [XmlEnum("fr-ca-standard-female-1")]
+    CanadianFemale1,
+    [XmlEnum("fr-ca-standard-female-2")]
+    CanadianFemale2,
+    [XmlEnum("fr-ca-standard-male-1")]
+    CanadianMale1,
+    [XmlEnum("fr-ca-standard-male-1")]
+    CanadianMale2,
+    [XmlEnum("fr-fr-standard-female-1")]
+    FrenchFemale1,
+    [XmlEnum("fr-fr-standard-female-2")]
+    FrenchFemale2,
+    [XmlEnum("fr-fr-standard-male-1")]
+    FrenchMale1,
+    [XmlEnum("fr-fr-standard-male-2")]
+    FrenchMale2,
+    [XmlEnum("de-de-standard-female-1")]
+    GermanFemale1,
+    [XmlEnum("de-de-standard-male-1")]
+    GermanMale1,
+    [XmlEnum("it-it-standard-female-1")]
+    ItalianFemale1,
+    [XmlEnum("ja-jp-standard-female-1")]
+    JapaneseFemale1,
+    [XmlEnum("ko-kr-standard-female-1")]
+    KoreanFemale1,
+    [XmlEnum("pt-br-standard-female-1")]
+    PortugueseFemale1,
+    [XmlEnum("es-es-standard-female-1")]
+    SpanishFemale1,
+    [XmlEnum("sv-se-standard-female-1")]
+    SwedishFemale1,
+    [XmlEnum("tr-tr-standard-female-1")]
+    TurkishFemale1,
+}

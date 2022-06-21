@@ -15,10 +15,10 @@ public class NumberAttributeSpec
     [Fact]
     public void TestDeserialization()
     {
-        var deserialized = JsonSerializer.Deserialize<NumberAttribute>(_json);
+        var deserialized = JsonSerializer.Deserialize<YtelNumberAttribute>(_json);
         Assert.Equal(_object, deserialized);
     }
 
-    private readonly NumberAttribute _object = NumberAttribute.Voice;
+    private readonly YtelNumberAttribute _object = YtelNumberAttribute.Voice;
     private readonly string _json = @"""voice-enabled""";
 }

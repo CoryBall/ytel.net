@@ -6,7 +6,7 @@ using Ytel.Serialization;
 
 namespace Ytel.Numbers;
 
-public class Number
+public class YtelNumber
 {
     [JsonPropertyName("accountSid")]
     public Guid AccountSid { get; set; }
@@ -18,16 +18,16 @@ public class Number
     public string? Cnam { get; set; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     [JsonPropertyName("voiceUrl")]
-    public Uri? VoiceUrl { get; set; }
+    public string? VoiceUrl { get; set; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     [JsonPropertyName("voiceMethod")]
-    public HttpMethod? VoiceMethod { get; set; }
+    public string? VoiceMethod { get; set; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     [JsonPropertyName("voiceFallbackUrl")]
-    public Uri? VoiceFallbackUrl { get; set; }
+    public string? VoiceFallbackUrl { get; set; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     [JsonPropertyName("voiceFallbackMethod")]
-    public HttpMethod? VoiceFallbackMethod { get; set; }
+    public string? VoiceFallbackMethod { get; set; }
     [JsonConverter(typeof(DateTimeTickJsonConverter))]
     [JsonPropertyName("renewalDate")]
     public DateTime RenewalDate { get; set;  }
@@ -40,34 +40,34 @@ public class Number
     public int TimeZone { get; set; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     [JsonPropertyName("smsUrl")]
-    public Uri? SmsUrl { get; set; }
+    public string? SmsUrl { get; set; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     [JsonPropertyName("smsMethod")]
-    public HttpMethod? SmsMethod { get; set; }
+    public string? SmsMethod { get; set; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     [JsonPropertyName("smsFallbackUrl")]
-    public Uri? SmsFallbackUrl { get; set; }
+    public string? SmsFallbackUrl { get; set; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     [JsonPropertyName("smsFallbackMethod")]
-    public HttpMethod? SmsFallbackMethod { get; set; }
+    public string? SmsFallbackMethod { get; set; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     [JsonPropertyName("heartbeatUrl")]
-    public Uri? HeartbeatUrl { get; set; }
+    public string? HeartbeatUrl { get; set; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     [JsonPropertyName("heartbeatMethod")]
-    public HttpMethod? HeartbeatMethod { get; set; }
+    public string? HeartbeatMethod { get; set; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     [JsonPropertyName("hangupCallbackUrl")]
-    public Uri? HangupCallbackUrl { get; set; }
+    public string? HangupCallbackUrl { get; set; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     [JsonPropertyName("hangupCallbackMethod")]
-    public HttpMethod? HangupCallbackMethod { get; set; }
+    public string? HangupCallbackMethod { get; set; }
     [JsonPropertyName("attributes")]
-    public List<NumberAttribute>? Attributes { get; set; }
+    public List<YtelNumberAttribute>? Attributes { get; set; }
     [JsonPropertyName("numberType")]
     public int NumberType { get; set; }
 
-    public Number()
+    public YtelNumber()
     {
     }
 }

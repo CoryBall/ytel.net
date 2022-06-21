@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 namespace Ytel.Numbers;
 
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum NumberFeature
+public enum YtelNumberFeature
 {
     [JsonPropertyName("voice")]
     Voice = 0,
