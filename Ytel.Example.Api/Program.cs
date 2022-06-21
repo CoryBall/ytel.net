@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Ytel.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);

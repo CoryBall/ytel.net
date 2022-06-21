@@ -19,6 +19,9 @@ public class InboundXml
     [XmlElement("Dial")]
     public Dial? Dial { get; set; }
     
+    [XmlElement("Hangup")]
+    public Hangup? Hangup { get; set; }
+    
     #region Serialization
     
     public bool ShouldSerializeSay()
@@ -33,6 +36,11 @@ public class InboundXml
     public bool ShouldSerializeDial()
     {
         return Dial != null;
+    }
+
+    public bool ShouldSerializeHangup()
+    {
+        return Hangup != null;
     }
     
     #endregion

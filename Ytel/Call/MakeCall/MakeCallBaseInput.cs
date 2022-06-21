@@ -67,7 +67,5 @@ public abstract class MakeCallBaseInput
         {
             throw new ArgumentException("Must supply either From OR NumberSetId to make call");
         }
-
-        
     }
 }
