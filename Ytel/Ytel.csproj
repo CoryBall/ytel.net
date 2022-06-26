@@ -10,7 +10,7 @@
     <Description>.NET SDK for Ytel CPaaS API</Description>
     <RepositoryUrl>https://github.com/CoryBall/ytel.net</RepositoryUrl>
     <PackageTags>ytel,sdk,sms,voice,phone</PackageTags>
-	<VersionPrefix>1.0.2</VersionPrefix>
+	<VersionPrefix>1.0.4</VersionPrefix>
 	<VersionSuffix>alpha</VersionSuffix>
     <Version>$(VersionPrefix)-$(VersionSuffix)</Version>
 	<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
