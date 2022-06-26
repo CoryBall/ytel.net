@@ -1,5 +1,4 @@
 using System;
-using System.Buffers;
 using System.Buffers.Text;
 using System.Diagnostics;
 using System.Text.Json;
@@ -15,7 +14,7 @@ public class DateTimeTickJsonConverter : JsonConverter<DateTime>
 
         if (Utf8Parser.TryParse(reader.ValueSpan, out long value, out _))
         {
-            return new DateTime(value);
+            return new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(value);
         }
 
         throw new FormatException();
@@ -23,6 +22,6 @@ public class DateTimeTickJsonConverter : JsonConverter<DateTime>
 
     public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)
     {
-        writer.WriteNumberValue(value.Ticks);
+        writer.WriteStringValue(value);
     }
 }
