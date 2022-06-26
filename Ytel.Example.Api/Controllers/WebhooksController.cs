@@ -9,12 +9,12 @@ namespace Ytel.Example.Api.Controllers;
 [Route("api/[controller]")]
 public class WebhooksController : YtelInboundController
 {
-    [HttpPost]
+    [HttpPost("call")]
     public YtelInboundResponse OutgoingCallXml([FromForm] MakeCallUrlRequest request)
     {
         var response = new InboundXml
         {
-            Say = new Say("Thank you for using Ytel.Net. Call was placed Successfully.", SayVoice.AmericanMale2, 30, false),
+            Say = new Say("Thank you for using Ytel.Net. Call was placed Successfully.", SayVoice.AmericanMale2, 1, false),
         };
         return YtelResponse(response);
     }
@@ -27,6 +27,23 @@ public class WebhooksController : YtelInboundController
 
     [HttpPost("call-heartbeat")]
     public IActionResult OutgoingCallHeartbeatUrl([FromForm] MakeCallHeartbeatRequest request)
+    {
+        return Ok();
+    }
+
+    [HttpPost("call-inbound")]
+    public IActionResult InboundCall([FromForm] InboundCallRequest request)
+    {
+        var response = new InboundXml
+        {
+            Say = new Say("Thank you for using Ytel.Net. Call was placed Successfully.", SayVoice.AmericanMale2, 1, false),
+        };
+        return YtelResponse(response);
+    }
+
+
+    [HttpPost("sms-inbound")]
+    public IActionResult InboundText([FromForm] InboundSmsRequest request)
     {
         return Ok();
     }
