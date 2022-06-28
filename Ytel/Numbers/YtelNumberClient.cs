@@ -17,7 +17,7 @@ public class YtelNumberClient : YtelBaseService, IYtelNumberClient
     {
         const string uri = YtelNumbersEndpoints.GetNumbers;
         using var result = await _httpClient.GetAsync(uri, ct).ConfigureAwait(false);
-        using var contentStream = await result.Content.ReadAsStreamAsync();
+        using var contentStream = await result.Content.ReadAsStreamAsync().ConfigureAwait(false);
         return await JsonSerializer.DeserializeAsync<YtelApiResponse<YtelNumber>>(contentStream, options: default, ct);
     }
 
@@ -25,9 +25,8 @@ public class YtelNumberClient : YtelBaseService, IYtelNumberClient
     {
         var uri = $"{YtelNumbersEndpoints.GetNumbers}{phoneNumber}/";
         
-        using var result = await _httpClient.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead, ct)
-            .ConfigureAwait(false);
-        using var contentStream = await result.Content.ReadAsStreamAsync();
+        using var result = await _httpClient.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead, ct).ConfigureAwait(false);
+        using var contentStream = await result.Content.ReadAsStreamAsync().ConfigureAwait(false);
         return await JsonSerializer.DeserializeAsync<YtelApiResponse<YtelNumber>>(contentStream, options: default, ct);
     }
 
@@ -41,9 +40,8 @@ public class YtelNumberClient : YtelBaseService, IYtelNumberClient
             excludedFeatures = string.Join(",", input.ExcludedFeatures).ToLower()
         });
         
-        using var result = await _httpClient.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead, ct)
-            .ConfigureAwait(false);
-        using var contentStream = await result.Content.ReadAsStreamAsync();
+        using var result = await _httpClient.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead, ct).ConfigureAwait(false);
+        using var contentStream = await result.Content.ReadAsStreamAsync().ConfigureAwait(false);
         return await JsonSerializer.DeserializeAsync<YtelApiResponse<GetAvailableNumbersOutput>>(contentStream, options: default, ct);
     }
 
@@ -52,22 +50,27 @@ public class YtelNumberClient : YtelBaseService, IYtelNumberClient
     {
         const string uri = YtelNumbersEndpoints.PurchaseNumber;
         var content = new StringContent(JsonSerializer.Serialize(input), Encoding.UTF8, "application/json");
-        using var result = await _httpClient.PostAsync(uri, content, ct)
-            .ConfigureAwait(false);
-        using var contentStream = await result.Content.ReadAsStreamAsync();
-        return await JsonSerializer.DeserializeAsync<YtelApiResponse<YtelNumber>>(contentStream,
-            options: default, ct);
+        using var result = await _httpClient.PostAsync(uri, content, ct).ConfigureAwait(false);
+        using var contentStream = await result.Content.ReadAsStreamAsync().ConfigureAwait(false);
+        return await JsonSerializer.DeserializeAsync<YtelApiResponse<YtelNumber>>(contentStream, options: default, ct);
     }
     
+    public async Task<YtelApiResponse<YtelNumber>?> EditNumberAsync(string phoneNumber, EditNumberInput input, CancellationToken ct = default)
+    {
+        var uri = string.Format("{0}{1}/", YtelNumbersEndpoints.EditNumber, phoneNumber);
+        var content = new StringContent(JsonSerializer.Serialize(input), Encoding.UTF8, "application/json");
+        using var result = await _httpClient.PutAsync(uri, content, ct).ConfigureAwait(false);
+        using var contentStream = await result.Content.ReadAsStreamAsync().ConfigureAwait(false);
+        return await JsonSerializer.DeserializeAsync<YtelApiResponse<YtelNumber>>(contentStream, options: default, ct);
+    }
+
     public async Task<YtelApiResponse<YtelNumber>?> ReleaseNumberAsync(ReleaseNumberInput input,
         CancellationToken ct = default)
     {
         const string uri = YtelNumbersEndpoints.ReleaseNumber;
         var content = new StringContent(JsonSerializer.Serialize(input), Encoding.UTF8, "application/json");
-        using var result = await _httpClient.PostAsync(uri, content, ct)
-            .ConfigureAwait(false);
-        using var contentStream = await result.Content.ReadAsStreamAsync();
-        return await JsonSerializer.DeserializeAsync<YtelApiResponse<YtelNumber>>(contentStream,
-            options: default, ct);
+        using var result = await _httpClient.PostAsync(uri, content, ct).ConfigureAwait(false);
+        using var contentStream = await result.Content.ReadAsStreamAsync().ConfigureAwait(false);
+        return await JsonSerializer.DeserializeAsync<YtelApiResponse<YtelNumber>>(contentStream, options: default, ct);
     }
 }

@@ -52,4 +52,36 @@ public class NumberController : ControllerBase
         var numbers = await _ytelClient.Numbers.ReleaseNumberAsync(input);
         return Ok(numbers);
     }
+
+    [HttpPut("{phoneNumber}")]
+    public async Task<ActionResult<YtelApiResponse<YtelNumber>>> EditNumber(string phoneNumber, [FromBody] EditNumberInput input, CancellationToken ct = default)
+    {
+        if (!string.IsNullOrWhiteSpace(input.HeartbeatUrl) && string.IsNullOrWhiteSpace(input.HeartbeatMethod))
+        {
+            return BadRequest("Must include heartbeatMethod");
+        }
+        if (!string.IsNullOrWhiteSpace(input.HangupCallbackUrl) && string.IsNullOrWhiteSpace(input.HangupCallbackMethod))
+        {
+            return BadRequest("Must include hangupCallbackMethod");
+        }
+        if (!string.IsNullOrWhiteSpace(input.VoiceUrl) && string.IsNullOrWhiteSpace(input.VoiceMethod))
+        {
+            return BadRequest("Must include voiceMethod");
+        }
+        if (!string.IsNullOrWhiteSpace(input.VoiceFallbackUrl) && string.IsNullOrWhiteSpace(input.VoiceFallbackMethod))
+        {
+            return BadRequest("Must include voiceFallbackMethod");
+        }
+        if (!string.IsNullOrWhiteSpace(input.SmsUrl) && string.IsNullOrWhiteSpace(input.SmsMethod))
+        {
+            return BadRequest("Must include smsMethod");
+        }
+        if (!string.IsNullOrWhiteSpace(input.SmsFallbackUrl) && string.IsNullOrWhiteSpace(input.SmsFallbackMethod))
+        {
+            return BadRequest("Must include smsFallbackMethod");
+        }
+
+        var updatedNumber = await _ytelClient.Numbers.EditNumberAsync(phoneNumber, input, ct);
+        return Ok(updatedNumber);
+    }
 }
