@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 using Ytel.Serialization;
@@ -10,16 +9,16 @@ namespace Ytel.Inbound;
 [XmlRoot("Response")]
 public class InboundXml
 {
-    [XmlElement("Say")]
+    [XmlElement("Say", Order = 0)]
     public Say? Say { get; set; }
 
-    [XmlElement("Play")]
+    [XmlElement("Play", Order = 1)]
     public Play? Play { get; set; }
     
-    [XmlElement("Dial")]
+    [XmlElement("Dial", Order = 2)]
     public Dial? Dial { get; set; }
     
-    [XmlElement("Hangup")]
+    [XmlElement("Hangup", Order = int.MaxValue)]
     public Hangup? Hangup { get; set; }
     
     #region Serialization
